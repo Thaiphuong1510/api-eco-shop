@@ -1,0 +1,46 @@
+package com.example.ecoshop.Controller;
+
+import com.example.ecoshop.Model.User;
+import com.example.ecoshop.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    UserService userService;
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User user) {
+        User responseUser = userService.login(user.getUsername(), user.getPassword());
+        return ResponseEntity.ok().body(responseUser);
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody User user){
+        User responseUser = userService.saveUser(user);
+        return ResponseEntity.ok().body(responseUser);
+    }
+    @PostMapping("/update")
+    public ResponseEntity<?> updateUser(@RequestBody User user){
+        User responseUser = userService.updateUser(user);
+        return ResponseEntity.ok().body(responseUser);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers(){
+        return ResponseEntity.ok().body(userService.getUsers());
+    }
+
+    @DeleteMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable int id){
+        return userService.deleteUser(id);
+    }
+
+
+}
