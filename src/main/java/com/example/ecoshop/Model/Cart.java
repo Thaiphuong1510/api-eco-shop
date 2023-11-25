@@ -20,24 +20,8 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @JsonFormat(pattern = "MM/dd/yyyy")
-    @Column(name = "creatAt", columnDefinition = "DATE")
-    Date creatAt;
-
-    @Column(name = "status")
-    String status;
-
-    @Column(name = "paymentMethod")
-    String paymentMethod;
-
-    @Column(name = "feeShipping")
-    Float feeShipping;
-
-    @Column(name = "totalAmount")
-    Float totalAmount;
-
-    @Column(name = "note")
-    String note;
+    @Column(name = "total")
+    Float total;
 
     @JsonIgnore
     @OneToOne
