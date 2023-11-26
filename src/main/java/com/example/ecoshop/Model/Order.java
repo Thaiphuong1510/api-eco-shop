@@ -2,6 +2,7 @@ package com.example.ecoshop.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +22,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @JsonFormat(pattern = "MM/dd/yyyy")
+   // @JsonFormat(pattern = "MM/dd/yyyy")
     @Column(name = "thoiGian", columnDefinition = "DATE")
     Date creatAt;
 
@@ -34,28 +35,29 @@ public class Order {
     @Column(name ="feeShipping")
     Float feeShipping;
 
-    @Column(name ="totalAmount")
+//    @Column(name ="totalAmount")
     Float totalAmount;
 
     @Column(name ="note")
     String note;
 
     @JsonIgnore
+    @JsonIgnoreProperties("order")
     @OneToMany(mappedBy = "order")
     List<CartItem> listOrderItem;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("orders")
     @ManyToOne
     @JoinColumn(name = "idUser", referencedColumnName = "id")
     User user;
 
-    public Order(Order order){
-        this.id = id;
-        this.creatAt = creatAt;
-        this.status = status;
-        this.paymentMethod = paymentMethod;
-        this.feeShipping = feeShipping;
-        this.totalAmount = totalAmount;
-        this.note = note;
-    }
+//    public Order(Order order){
+//        this.id = id;
+//        this.creatAt = creatAt;
+//        this.status = status;
+//        this.paymentMethod = paymentMethod;
+//        this.feeShipping = feeShipping;
+//        this.totalAmount = totalAmount;
+//        this.note = note;
+//    }
 }

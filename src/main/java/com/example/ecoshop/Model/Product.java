@@ -1,6 +1,7 @@
 package com.example.ecoshop.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,14 +30,14 @@ public class Product {
     @Column(name = "status")
     Boolean status;
 
-
     @JsonIgnore
     @OneToMany(mappedBy = "product")
     List<CartItem> cartItems;
 
-    @JsonIgnore
+  //  @JsonIgnore
     @ManyToOne
     @JoinColumn(name ="idCategory", referencedColumnName = "id")
+    @JsonIgnoreProperties("products")
     Category category;
 
 }

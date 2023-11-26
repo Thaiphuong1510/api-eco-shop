@@ -28,7 +28,7 @@ public class Category {
     @Column(name = "status")
     Boolean status;
 
-    @JsonIgnore
+   // @JsonIgnore
     @OneToMany(mappedBy = "category")
     List<Product> products;
 

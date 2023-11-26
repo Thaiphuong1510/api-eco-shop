@@ -1,10 +1,12 @@
 package com.example.ecoshop.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 
 import java.util.List;
 
@@ -24,22 +26,29 @@ public class CartItem {
     @Column(name = "quantity")
     Integer quantity;
 
-    @Column(name = "amount")
+//    @Column(name = "amount")
+//    @Formula("unitPrice * quantity")
+//    @Transient
     Float amount;
-
-    @JsonIgnore
+   // @JsonIgnore
+   @JsonIgnoreProperties("cartItemList")
     @ManyToOne
     @JoinColumn(name ="idCart", referencedColumnName = "id")
     Cart cart;
 
-    @JsonIgnore
+
     @ManyToOne
+
     @JoinColumn(name ="idOrder", referencedColumnName = "id")
     Order order;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name ="idProduct", referencedColumnName = "id" )
+    @JsonIgnoreProperties("cartItems")
     Product product;
 
+//    public double getAmount() {
+//        return this.unitPrice * this.quantity;
+//    }
 }

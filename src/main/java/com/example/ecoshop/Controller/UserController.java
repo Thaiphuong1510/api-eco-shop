@@ -1,5 +1,6 @@
 package com.example.ecoshop.Controller;
 
+import com.example.ecoshop.DTO.UserDTO;
 import com.example.ecoshop.Model.User;
 import com.example.ecoshop.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,14 @@ public class UserController {
     UserService userService;
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
-        User responseUser = userService.login(user.getUsername(), user.getPassword());
+        UserDTO responseUser = userService.login(user.getUsername(), user.getPassword());
         return ResponseEntity.ok().body(responseUser);
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody User user){
-        User responseUser = userService.saveUser(user);
-        return ResponseEntity.ok().body(responseUser);
+        UserDTO responseUserDTO = userService.saveUser(user);
+        return ResponseEntity.ok().body(responseUserDTO);
     }
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(@RequestBody User user){

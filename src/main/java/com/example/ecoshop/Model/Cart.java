@@ -2,6 +2,7 @@ package com.example.ecoshop.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,16 +20,23 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
-    @Column(name = "total")
+//
+//    @Column(name = "total")
     Float total;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("cart")
     @OneToOne
     @JoinColumn(name = "idUser", referencedColumnName = "id")
     User user;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cart")
+   // @JsonIgnore
+//    @JsonIgnoreProperties("cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<CartItem> cartItemList;
+
+    public Cart(Cart cart) {
+        this.id = cart.getId();
+       // this.total = cart.getTotal();
+        this.user = cart.getUser();
+    }
 }

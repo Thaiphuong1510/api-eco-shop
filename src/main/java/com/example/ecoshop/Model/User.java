@@ -1,6 +1,7 @@
 package com.example.ecoshop.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,15 +43,16 @@ public class User {
     @Column(name = "address", columnDefinition = "NVARCHAR(255)")
     String address;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "user")
     List<Order> orders;
 
-    @JsonIgnore
+   // @JsonIgnore
     @OneToOne(mappedBy = "user")
+
     Cart cart;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("user")
     @OneToOne(mappedBy = "user")
     Staff staff;
 

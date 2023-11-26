@@ -1,7 +1,9 @@
 package com.example.ecoshop.Controller;
 
+import com.example.ecoshop.Model.Cart;
 import com.example.ecoshop.Model.Category;
 import com.example.ecoshop.Model.User;
+import com.example.ecoshop.Service.CartService;
 import com.example.ecoshop.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ public class CategoryController {
 
     @Autowired
     CategoryService categoryService;
+
     @GetMapping("/categories")
     public ResponseEntity<List<Category>> getAllCategories(){
         return ResponseEntity.ok().body(categoryService.getCategories());

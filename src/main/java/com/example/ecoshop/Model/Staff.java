@@ -20,7 +20,7 @@ public class Staff {
     @Column(name = "role", columnDefinition = "NVARCHAR(255)")
     String role;
 
-    @JsonIgnore
+  //  @JsonIgnore
     @OneToOne
     @JoinColumn(name = "idUser", referencedColumnName = "id")
     User user;
