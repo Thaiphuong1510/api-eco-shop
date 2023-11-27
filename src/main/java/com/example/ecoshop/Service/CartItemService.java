@@ -1,7 +1,6 @@
 package com.example.ecoshop.Service;
 
 import com.example.ecoshop.DTO.CartItemDTO;
-import com.example.ecoshop.Model.Cart;
 import com.example.ecoshop.Model.CartItem;
 import com.example.ecoshop.Repository.CartItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,10 @@ public class CartItemService {
             return new CartItemDTO(null, 1, "system_error");
         }
         return new CartItemDTO(existingcartitem, 0 , "success");
+
+    }
+    public CartItem findId(Integer id){
+        return cartItemRepository.findById(id).get();
 
     }
 }

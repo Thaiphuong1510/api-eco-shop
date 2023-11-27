@@ -2,7 +2,6 @@ package com.example.ecoshop.Repository;
 
 import com.example.ecoshop.Model.Category;
 import com.example.ecoshop.Model.Product;
-import com.example.ecoshop.Service.ProductService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,18 +1,13 @@
 package com.example.ecoshop.Service;
 
 import com.example.ecoshop.DTO.CartDTO;
-import com.example.ecoshop.DTO.CartItemDTO;
-import com.example.ecoshop.DTO.UserDTO;
 import com.example.ecoshop.Model.Cart;
 import com.example.ecoshop.Model.CartItem;
-import com.example.ecoshop.Model.Category;
-import com.example.ecoshop.Model.Product;
 import com.example.ecoshop.Repository.CartItemRepository;
 import com.example.ecoshop.Repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.event.ItemEvent;
 import java.util.List;
 
 @Service
@@ -68,14 +63,15 @@ public class CartService {
             if(cartItemRepository.save(cartItem) == null){
                 return new CartDTO(null,1,"system_error");
             }
-//            // update cart
-//            updateCart(cart, cartItem);
+
         }
-        // cart item da ton tai => cong don quantity bang cach update cartitem
-        existedCartItem.setQuantity(existedCartItem.getQuantity()+ cartItem.getQuantity());
-        existedCartItem.setAmount(existedCartItem.getProduct().getUnitPrice() * existedCartItem.getQuantity());
-        if(updateCartItem(existedCartItem) == null ){
-            return new CartDTO(null,1,"system_error");
+        else {
+            // cart item da ton tai => cong don quantity bang cach update cartitem
+            existedCartItem.setQuantity(existedCartItem.getQuantity() + cartItem.getQuantity());
+            existedCartItem.setAmount(existedCartItem.getProduct().getUnitPrice() * existedCartItem.getQuantity());
+            if (updateCartItem(existedCartItem) == null) {
+                return new CartDTO(null, 1, "system_error");
+            }
         }
        List<CartItem> listItem = cart.getCartItemList();
        listItem.add(cartItem);

@@ -5,11 +5,10 @@ import com.example.ecoshop.Model.User;
 import com.example.ecoshop.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -37,11 +36,10 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers(){
         return ResponseEntity.ok().body(userService.getUsers());
     }
-    @GetMapping("/users/")
-    public ResponseEntity<User> getUserById(int id){
+    @GetMapping("/users/id")
+    public ResponseEntity<User> getAllUsers(@PathVariable int id){
         return ResponseEntity.ok().body(userService.getUserById(id));
     }
-
     @DeleteMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable int id){
         return userService.deleteUser(id);

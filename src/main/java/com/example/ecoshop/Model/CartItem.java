@@ -1,14 +1,10 @@
 package com.example.ecoshop.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Formula;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -47,7 +43,9 @@ public class CartItem {
     @JoinColumn(name ="idProduct", referencedColumnName = "id" )
     @JsonIgnoreProperties("cartItems")
     Product product;
-
+    public Float getAmountTT() {
+        return unitPrice * quantity;
+    }
 //    public double getAmount() {
 //        return this.unitPrice * this.quantity;
 //    }

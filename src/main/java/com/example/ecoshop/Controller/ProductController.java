@@ -1,16 +1,14 @@
 package com.example.ecoshop.Controller;
 
 import com.example.ecoshop.DTO.FilterDTO;
-import com.example.ecoshop.Model.Category;
 import com.example.ecoshop.Model.Product;
-import com.example.ecoshop.Service.CategoryService;
 import com.example.ecoshop.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/product")
 public class ProductController {

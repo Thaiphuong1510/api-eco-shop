@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -43,11 +42,11 @@ public class User {
     @Column(name = "address", columnDefinition = "NVARCHAR(255)")
     String address;
 
-    //@JsonIgnore
+
     @OneToMany(mappedBy = "user")
     List<Order> orders;
 
-   // @JsonIgnore
+    @JsonIgnore
     @OneToOne(mappedBy = "user")
 
     Cart cart;

@@ -1,9 +1,7 @@
 package com.example.ecoshop.Service;
 
 import com.example.ecoshop.DTO.FilterDTO;
-import com.example.ecoshop.Model.Category;
 import com.example.ecoshop.Model.Product;
-import com.example.ecoshop.Repository.CategoryRepository;
 import com.example.ecoshop.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

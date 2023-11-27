@@ -1,8 +1,6 @@
 package com.example.ecoshop.Repository;
 
-import com.example.ecoshop.Model.Cart;
 import com.example.ecoshop.Model.CartItem;
-import com.example.ecoshop.Model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

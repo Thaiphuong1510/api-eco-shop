@@ -3,7 +3,6 @@ package com.example.ecoshop.Controller;
 import com.example.ecoshop.DTO.CartDTO;
 import com.example.ecoshop.Model.Cart;
 import com.example.ecoshop.Model.CartItem;
-import com.example.ecoshop.Model.Category;
 import com.example.ecoshop.Service.CartItemService;
 import com.example.ecoshop.Service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/cart")
 public class CartController {

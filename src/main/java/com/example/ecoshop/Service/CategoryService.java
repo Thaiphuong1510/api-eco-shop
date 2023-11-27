@@ -1,7 +1,6 @@
 package com.example.ecoshop.Service;
 
 import com.example.ecoshop.Model.Category;
-import com.example.ecoshop.Model.User;
 import com.example.ecoshop.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -56,9 +56,10 @@ public class UserService {
     public List<User> getUsers(){
         return userRepository.findAll();
     }
-    public User getUserById(int id){
+    public User getUserById( int id){
         return userRepository.findById(id).get();
     }
+
     public String deleteUser(int id){
         userRepository.deleteById(id);
         return "User removed " + id;
