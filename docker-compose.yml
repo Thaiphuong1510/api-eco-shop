@@ -4,7 +4,7 @@ services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_thai_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: ecoshop
       MYSQL_USER: thai
       MYSQL_PASSWORD: 1234
