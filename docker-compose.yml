@@ -2,12 +2,13 @@ version: '3'
 
 services:
   mysql:
-    image: mysql:8.0
+    image: mysql:tz
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: ecoshop
       MYSQL_USER: thai
       MYSQL_PASSWORD: 1234
+      TZ: 'Asia/Ho_Chi_Minh'
     ports:
       - "3306:3306"
     volumes:
@@ -29,3 +30,4 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ecoshop
       SPRING_DATASOURCE_USERNAME: thai
       SPRING_DATASOURCE_PASSWORD: 1234
+      JAVA_OPTS: "-Duser.timezone=Asia/Ho_Chi_Minh"

@@ -5,6 +5,8 @@ RUN gradle build -x test --no-daemon
 
 FROM openjdk:17
 
+ENV TZ Asia/Ho_Chi_Minh
+
 EXPOSE 8080
 
 RUN mkdir /app
