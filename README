@@ -1,0 +1,28 @@
+
+**Using the Makefile
+**This Makefile provides a streamlined way to manage your Dockerized project. Follow the instructions below to perform common tasks.
+
+# Prerequisites
+Before using the Makefile, ensure that you have the following installed on your system:
+
+- Docker
+- Docker Compose
+
+```console
+Available targets:
+
+make down    - Stop and remove containers (including volumes)
+make build   - Build Docker images for the application and MySQL
+make up      - Start the application in detached mode
+make clean   - Remove unused Docker images
+make deploy  - Build and start the application
+make help    - Display this help message
+```
+
+# Troubleshooting
+If you encounter any issues or errors, refer to the error messages and check the following:
+
+Docker and Docker Compose are installed.
+The Dockerfile and Docker Compose files are correctly configured.
+Permissions and paths are set up correctly in your project.
+Feel free to reach out if you need further assistance!
