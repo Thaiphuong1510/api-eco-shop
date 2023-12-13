@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,7 +23,9 @@ public class Order {
     Integer id;
 
    // @JsonFormat(pattern = "MM/dd/yyyy")
-    @Column(name = "thoiGian",  columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    //@Column(name = "thoiGian",  columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    @Column(name = "creatAt")
+   // @ColumnDefault("CURRENT_TIMESTAMP")
     LocalDate creatAt;
 
     @Column(name ="status")
