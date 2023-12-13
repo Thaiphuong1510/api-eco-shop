@@ -5,11 +5,13 @@ RUN gradle build -x test --no-daemon
 
 FROM openjdk:17
 
+ENV TZ Asia/Ho_Chi_Minh
+
 EXPOSE 8080
 
 RUN mkdir /app
 
-COPY --from=build /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
+COPY --from=build /home/gradle/src/build/libs/EcoShop-0.0.1-SNAPSHOT.jar /app/spring-boot-application.jar
 
 # ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/spring-boot-application.jar"]
 CMD ["java", "-jar", "/app/spring-boot-application.jar"]
