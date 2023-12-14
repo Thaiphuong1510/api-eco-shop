@@ -1,5 +1,6 @@
 package com.example.ecoshop.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,12 +25,13 @@ public class CartItem {
 
 
     Float amount;
-   // @JsonIgnore
-    @JsonIgnoreProperties("cartItemList")
+    @JsonIgnore
+    //@JsonIgnoreProperties("cartItemList")
     @ManyToOne
     @JoinColumn(name ="idCart", referencedColumnName = "id")
     Cart cart;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name ="idOrder", referencedColumnName = "id")
     Order order;

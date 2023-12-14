@@ -3,6 +3,8 @@ package com.example.ecoshop.Service;
 import com.example.ecoshop.DTO.CartDTO;
 import com.example.ecoshop.Model.Cart;
 import com.example.ecoshop.Model.CartItem;
+import com.example.ecoshop.Model.Product;
+import com.example.ecoshop.Model.User;
 import com.example.ecoshop.Repository.CartItemRepository;
 import com.example.ecoshop.Repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class CartService {
     CartRepository cartRepository;
     @Autowired
     ProductService productService;
+    @Autowired
+    UserService userService;
     @Autowired
     CartItemRepository cartItemRepository;
     public CartDTO saveCart(Cart cart){
@@ -41,12 +45,15 @@ public class CartService {
 
     }
     public Cart getCartByIdUser(Integer idUser){
-        Cart cart = cartRepository.getCartByIdUser(idUser);
+        Cart cart = cartRepository.getCartByUser(userService.getUserById(idUser));
         return cart;
     }
 
    public CartDTO addToCart(CartItem cartItem, Integer idUser){
         Integer id_product = cartItem.getProduct().getId();
+
+       Product product = productService.getProductById(id_product);
+       cartItem.setUnitPrice(product.getUnitPrice());
 
         Cart cart = getCartByIdUser(idUser);
         if(cartItem.getQuantity() == 0) {
@@ -56,8 +63,9 @@ public class CartService {
         CartItem existedCartItem = cartItemRepository.findCartItemByCartAndProduct(id_product, cart.getId());
         if(existedCartItem == null){
             // cart item chua ton tai => luu item cart vao csdl
+
             cartItem.setCart(cart);
-            float amount = cartItem.getProduct().getUnitPrice() * cartItem.getQuantity();
+            float amount = cartItem.getUnitPrice() * cartItem.getQuantity();
             cartItem.setAmount(amount);
 
             if(cartItemRepository.save(cartItem) == null){
@@ -68,7 +76,7 @@ public class CartService {
         else {
             // cart item da ton tai => cong don quantity bang cach update cartitem
             existedCartItem.setQuantity(existedCartItem.getQuantity() + cartItem.getQuantity());
-            existedCartItem.setAmount(existedCartItem.getProduct().getUnitPrice() * existedCartItem.getQuantity());
+            existedCartItem.setAmount(existedCartItem.getUnitPrice() * existedCartItem.getQuantity());
             if (updateCartItem(existedCartItem) == null) {
                 return new CartDTO(null, 1, "system_error");
             }
