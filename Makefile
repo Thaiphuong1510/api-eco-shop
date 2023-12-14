@@ -27,4 +27,3 @@ clean:
 	docker rmi $(docker images -f "dangling=true" -q) -f || true
 
 deploy: down pull build up clean
-
