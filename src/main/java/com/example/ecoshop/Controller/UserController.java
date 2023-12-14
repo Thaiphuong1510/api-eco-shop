@@ -36,8 +36,9 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers(){
         return ResponseEntity.ok().body(userService.getUsers());
     }
-    @GetMapping("/users/id")
-    public ResponseEntity<User> getAllUsers(@PathVariable int id){
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable int id){
+        System.out.println(userService.getUserById(id).getImage());
         return ResponseEntity.ok().body(userService.getUserById(id));
     }
     @DeleteMapping("/deleteUser/{id}")

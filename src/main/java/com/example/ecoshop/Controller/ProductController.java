@@ -23,17 +23,18 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.getProductsByActive());
     }
     @GetMapping("/products/{id}")
-    public Product getProductById(@PathVariable int id){
-        return productService.getProductById(id);
+    public ResponseEntity<Product> getProductById(@PathVariable int id){
+        System.out.println(productService.getProductById(id));
+        return ResponseEntity.ok().body(productService.getProductById(id));
     }
     @GetMapping("/getByName/{nameProduct}")
-    public List<Product> findProductBySearchName(@PathVariable String nameProduct){
-        return productService.findBySearchNameProduct(nameProduct);
+    public ResponseEntity<List<Product>> findProductBySearchName(@PathVariable String nameProduct){
+        return ResponseEntity.ok().body(productService.findBySearchNameProduct(nameProduct));
     }
 
     @GetMapping("/getAllByFilter")
-    public List<Product> getAllByFilter(@RequestBody FilterDTO filterDto){
-        return productService.getProductByFilter(filterDto);
+    public ResponseEntity<List<Product>> getAllByFilter(@RequestBody FilterDTO filterDto){
+        return ResponseEntity.ok().body(productService.getProductByFilter(filterDto));
     }
     @PostMapping("/add")
     public ResponseEntity<?> addCategory(@RequestBody Product product){

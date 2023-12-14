@@ -24,7 +24,10 @@ public class CartController {
         System.out.println(cart.getUser().getName());
         return ResponseEntity.ok().body(cartService.getAllCarts());
     }
-
+    @GetMapping("/carts/{idUser}")
+    public ResponseEntity<Cart> getCartByIdUser(@PathVariable int idUser){
+        return ResponseEntity.ok().body(cartService.getCartByIdUser(idUser));
+    }
     @GetMapping("/itemCarts")
     public ResponseEntity<List<CartItem>> getAllItemCarts(){
 //        CartItem cartItem = cartItemService.getAllItems().get(0);
