@@ -1,5 +1,6 @@
 package com.example.ecoshop.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +28,7 @@ public class Category {
     @Column(name = "status")
     Boolean status;
 
-   // @JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     List<Product> products;
 

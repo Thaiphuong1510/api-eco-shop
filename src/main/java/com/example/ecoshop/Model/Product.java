@@ -34,7 +34,7 @@ public class Product {
     @OneToMany(mappedBy = "product")
     List<CartItem> cartItems;
 
-  //  @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name ="idCategory", referencedColumnName = "id")
     @JsonIgnoreProperties("products")

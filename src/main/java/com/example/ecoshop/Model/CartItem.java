@@ -22,22 +22,17 @@ public class CartItem {
     @Column(name = "quantity")
     Integer quantity;
 
-//    @Column(name = "amount")
-//    @Formula("unitPrice * quantity")
-//    @Transient
+
     Float amount;
    // @JsonIgnore
-   @JsonIgnoreProperties("cartItemList")
+    @JsonIgnoreProperties("cartItemList")
     @ManyToOne
     @JoinColumn(name ="idCart", referencedColumnName = "id")
     Cart cart;
 
-
     @ManyToOne
-
     @JoinColumn(name ="idOrder", referencedColumnName = "id")
     Order order;
-
 
     @ManyToOne
     @JoinColumn(name ="idProduct", referencedColumnName = "id" )
