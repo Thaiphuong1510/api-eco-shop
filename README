@@ -11,6 +11,7 @@ Before using the Makefile, ensure that you have the following installed on your 
 ```console
 Available targets:
 
+make pull	 - pull new code
 make down    - Stop and remove containers (including volumes)
 make build   - Build Docker images for the application and MySQL
 make up      - Start the application in detached mode
