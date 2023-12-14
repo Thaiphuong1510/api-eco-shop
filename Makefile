@@ -17,7 +17,7 @@ down:
 	docker-compose down -v || true
 
 build:
-	docker build -f dockerfile -t $(IMAGE_NAME):$(TAG) .
+	docker build -f dockerfile -t api-eco-shop:1.1 .
 	docker build -f dockerfile-sql -t mysql:tz .
 
 up:
