@@ -52,6 +52,25 @@ public class OrderService {
         return  orderRepository.findByCreatAtBetween(startDate,endDate);
     }
 
+    public List<Order> getAllOrders(){
+        return orderRepository.findAll();
+    }
+
+    public List<Order> getAllOrdersByUser(int idUser){
+        User user = userRepository.findById(idUser).get();
+        List<Order> orderList = orderRepository.findAllByUser(user);
+        if(orderList == null) return null;
+        return orderList;
+    }
+
+    public OrderDTO getOrderById(int id){
+        Order order = orderRepository.findById(id).get();
+        if(order == null ){
+            return new OrderDTO(null,1,"system_error");
+        }
+         return new OrderDTO(order,0,"success");
+    }
+
 
 
 }

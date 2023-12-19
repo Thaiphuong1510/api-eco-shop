@@ -14,6 +14,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     Product  findAllByNameProduct(String nameProduct);
     @Query(value = "SELECT * FROM ecoshop.tbl_product WHERE `status` = 1;", nativeQuery = true)
     List<Product> findAllByActive();
+    @Query(value = "SELECT * FROM ecoshop.tbl_product WHERE `status` = 1 ORDER BY `unit_price` ASC;", nativeQuery = true)
+    List<Product> findAllByPriceAsc();
+    @Query(value = "SELECT * FROM ecoshop.tbl_product WHERE `status` = 1 ORDER BY `unit_price` DESC;", nativeQuery = true)
+    List<Product> findAllByPriceDesc();
     @Query(value = "SELECT * FROM ecoshop.tbl_product where tbl_product.name_product like %:nameProduct%", nativeQuery = true)
     List<Product> findBySearchNameProduct(@Param("nameProduct") String nameProduct);
     List<Product> findAllByCategory(Category category);

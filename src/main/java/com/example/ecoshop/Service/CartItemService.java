@@ -33,6 +33,10 @@ public class CartItemService {
         return new CartItemDTO(existingcartitem, 0 , "success");
 
     }
+    public String deletecartItem(int id){
+        cartItemRepository.deleteById(id);
+        return "CartItem removed " + id;
+    }
     public CartItem findId(Integer id){
         return cartItemRepository.findById(id).get();
 

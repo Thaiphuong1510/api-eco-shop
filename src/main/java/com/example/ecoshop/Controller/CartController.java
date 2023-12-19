@@ -34,6 +34,11 @@ public class CartController {
 //        System.out.println(cartItem);
         return ResponseEntity.ok().body(cartItemService.getAllItems());
     }
+    @DeleteMapping("/deleteCartItem/{id}")
+    public String deleteCartItem(@PathVariable int id){
+        return cartItemService.deletecartItem(id);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<?> addNewCart(@RequestBody Cart cart){
         CartDTO responseCart = cartService.saveCart(cart);

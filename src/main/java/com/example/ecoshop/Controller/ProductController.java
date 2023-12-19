@@ -36,6 +36,14 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllByFilter(@RequestBody FilterDTO filterDto){
         return ResponseEntity.ok().body(productService.getProductByFilter(filterDto));
     }
+    @GetMapping("/getAllByPriceAsc")
+    public ResponseEntity<List<Product>> findAllByPriceAsc(){
+        return ResponseEntity.ok().body(productService.findAllByPriceAsc());
+    }
+    @GetMapping("/getAllByPriceDesc")
+    public ResponseEntity<List<Product>> findAllByPriceDesc(){
+        return ResponseEntity.ok().body(productService.findAllByPriceDesc());
+    }
     @PostMapping("/add")
     public ResponseEntity<?> addCategory(@RequestBody Product product){
         Product responseProduct = productService.saveProduct(product);

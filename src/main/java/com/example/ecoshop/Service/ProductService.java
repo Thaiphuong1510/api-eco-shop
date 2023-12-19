@@ -41,6 +41,12 @@ public class ProductService {
         productsByPrice.retainAll(productsByCategory);//hàm giao 2 list
         return productsByPrice;
     }
+    public List<Product> findAllByPriceAsc(){
+        return productRepository.findAllByPriceAsc();
+    }
+    public List<Product> findAllByPriceDesc(){
+        return productRepository.findAllByPriceDesc();
+    }
 
     public Product saveProduct(Product product){
         return productRepository.save(product);
