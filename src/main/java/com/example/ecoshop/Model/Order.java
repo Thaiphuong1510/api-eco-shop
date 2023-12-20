@@ -43,7 +43,7 @@ public class Order {
     @Column(name ="note")
     String note;
 
-    @JsonIgnore
+    //@JsonIgnore
     @JsonIgnoreProperties("order")
     @OneToMany(mappedBy = "order")
     List<CartItem> listOrderItem;

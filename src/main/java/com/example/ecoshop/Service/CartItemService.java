@@ -26,6 +26,7 @@ public class CartItemService {
     }
     public CartItemDTO updateCartItem(CartItem cartItem){
         CartItem existingcartitem = cartItemRepository.findById(cartItem.getId()).orElse(null);
+       // existingcartitem.setOrder();
         existingcartitem.setQuantity(cartItem.getQuantity());
         if(cartItemRepository.save(existingcartitem) == null){
             return new CartItemDTO(null, 1, "system_error");
