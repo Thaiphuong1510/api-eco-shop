@@ -22,6 +22,12 @@ public class UserService {
         if(userExists == null) return false;
         return true;
     }
+    public boolean isUsernameExistsInUpdate(String username, Integer idUser){
+        User userExists = userRepository.findUserByUsername(username);
+       // if(userExists == null) return false;
+
+        return userExists != null && !userExists.getId().equals(idUser);
+    }
     public UserDTO login(String username, String password){
         User user =userRepository.findUserByUsernameAndPassword(username, password);
         if(user == null){
@@ -41,7 +47,7 @@ public class UserService {
         return new UserDTO(user, 0, "success");
     }
 
-    public User updateUser(User client){
+    public UserDTO updateUser(User client){
         User existingUser = userRepository.findById(client.getId()).orElse(null);
         existingUser.setName(client.getName());
         existingUser.setEmail(client.getEmail());
@@ -50,7 +56,11 @@ public class UserService {
         existingUser.setUsername(client.getUsername());
         existingUser.setPassword(client.getPassword());
         existingUser.setImage(client.getImage());
-        return userRepository.save(existingUser);
+        if( isUsernameExistsInUpdate(existingUser.getUsername(), existingUser.getId()) ){
+            return new UserDTO(null, 1,"ten tk bi trung") ;
+        }
+        userRepository.save(existingUser);
+        return new UserDTO(existingUser, 0, "success");
     }
 
     public List<User> getUsers(){

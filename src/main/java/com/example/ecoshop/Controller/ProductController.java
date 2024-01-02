@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -66,7 +67,7 @@ public class ProductController {
     }
 
     @PostMapping("/searchByImage")
-    public ResponseEntity<String> searchProductByImage(@RequestBody String imageUrl) {
+    public ResponseEntity<List<Product>> searchProductByImage(@RequestBody String imageUrl) {
         // Gửi yêu cầu đến Backend Python để xử lý
         String pythonApiUrl = "http://localhost:5000/searchByImage"; // Địa chỉ API Python
         RestTemplate restTemplate = new RestTemplate();
@@ -75,10 +76,23 @@ public class ProductController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> request = new HttpEntity<>(imageUrl, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity(pythonApiUrl, request, String.class);
 
+        List<String> responseImgUrl = restTemplate.postForEntity(pythonApiUrl, request, List.class).getBody();
+
+        List<Product> result = new ArrayList<>();
+        if(responseImgUrl != null){
+            List<Product> productList = productService.getAllProducts();
+            for(Product product : productList ){
+                for(String imgUrl : responseImgUrl){
+                    if(product.getImages().contains(imgUrl)){
+                        result.add(product);
+                        break;
+                    }
+                }
+            }
+        }
         // Trả về kết quả từ Backend Python cho Frontend ReactJS
-        return ResponseEntity.ok(response.getBody());
+        return ResponseEntity.ok().body(result);
     }
     
 }
