@@ -27,11 +27,11 @@ public class OrderService {
     CartItemRepository cartItemRepository;
     public OrderDTO addOder(List<CartItem> cartItemList,String paymentMethod, Integer idUser){
         Order order = new Order();
-        order.setStatus("Pending");
+        order.setStatus("Chờ lấy hàng");
         order.setPaymentMethod(paymentMethod);
         order.setFeeShipping(0.0f);
         order.setTotalAmount(calculateTotalAmount(cartItemList));
-        order.setNote("huhu");
+        order.setNote("");
 
         User user = userRepository.findById(idUser).get();
         order.setUser(user);
