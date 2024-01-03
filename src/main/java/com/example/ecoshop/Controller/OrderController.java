@@ -54,6 +54,14 @@ public class OrderController {
         return ResponseEntity.ok().body(orderService.getAllOrdersByUser(idUser));
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<?> updateStatusOrder(@RequestBody Order order){
+
+        OrderDTO responseOrderDTO = orderService.updateStatusOrder(order);
+        return ResponseEntity.ok().body(responseOrderDTO);
+    }
+
+
 
 
 
