@@ -20,6 +20,11 @@ public class UserController {
         UserDTO responseUser = userService.login(user.getUsername(), user.getPassword());
         return ResponseEntity.ok().body(responseUser);
     }
+    @PostMapping("/loginAdmin/{id}")
+    public ResponseEntity<?> loginAdmin(@PathVariable int id) {
+        UserDTO responseUser = userService.checkAdmin(id);
+        return ResponseEntity.ok().body(responseUser);
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody User user){

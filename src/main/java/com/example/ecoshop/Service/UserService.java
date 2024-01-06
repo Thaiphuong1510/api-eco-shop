@@ -2,8 +2,10 @@ package com.example.ecoshop.Service;
 
 import com.example.ecoshop.DTO.UserDTO;
 import com.example.ecoshop.Model.Cart;
+import com.example.ecoshop.Model.Staff;
 import com.example.ecoshop.Model.User;
 import com.example.ecoshop.Repository.CartRepository;
+import com.example.ecoshop.Repository.StaffRepository;
 import com.example.ecoshop.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class UserService {
     UserRepository userRepository;
     @Autowired
     CartRepository cartRepository;
+    @Autowired
+    StaffRepository staffRepository;
     public boolean isUsernameExists(String username){
         User userExists = userRepository.findUserByUsername(username);
         if(userExists == null) return false;
@@ -75,5 +79,28 @@ public class UserService {
         return "User removed " + id;
     }
 
+    public UserDTO loginAdmin(String username, String password){
+        User user =userRepository.findUserByUsernameAndPassword(username, password);
+        if(user == null){
+            return new UserDTO(null, 1,"system_error");
+        }
+        Staff staff = staffRepository.findStaffByUser(user);
+        if(staff == null ){
+            return new UserDTO(user, 2,"khong la admin.");
+        }
+        return new UserDTO(user, 0, "success");
+    }
+
+    public UserDTO checkAdmin(Integer idUser){
+        User user =userRepository.findById(idUser).get();
+        if(user == null){
+            return new UserDTO(null, 1,"system_error");
+        }
+        Staff staff = staffRepository.findStaffByUser(user);
+        if(staff == null ){
+            return new UserDTO(user, 2,"khong la admin.");
+        }
+        return new UserDTO(user, 0, "success");
+    }
 
 }
