@@ -102,6 +102,15 @@ public class OrderService {
     }
 
 
-
-
+    public OrderDTO updateStatusPayment(int orderId, String responseCode) {
+        Order existingOrder = orderRepository.findById(orderId).get();
+        if ("00".equals(responseCode)) {
+            existingOrder.setNote("Thanh toán thành công");
+        } else {
+            existingOrder.setNote("Thanh toán thất bại");
+            existingOrder.setStatus("Huỷ đơn hàng");
+        }
+        orderRepository.save(existingOrder);
+        return new OrderDTO(existingOrder, 0, "success");
+    }
 }
