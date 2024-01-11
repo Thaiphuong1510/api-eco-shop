@@ -80,7 +80,7 @@ public class OrderController {
         vnp_Params.put("vnp_OrderInfo", responseOrderDTO.getOrder().getId()+"");
         vnp_Params.put("vnp_OrderType", PaymentConfig.ORDERTYPE);
         vnp_Params.put("vnp_Locale", PaymentConfig.LOCALEDEFAULT);
-        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/order/payment_return");
+        vnp_Params.put("vnp_ReturnUrl", "http://localhost:3000/order/payment_return");
         vnp_Params.put("vnp_IpAddr", PaymentConfig.IPDEFAULT);
         Date cld = new Date();
 
